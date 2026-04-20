@@ -1,0 +1,465 @@
+{
+  "info": {
+    "name": "API Gestão de Produtos",
+    "description": "Coleção de endpoints para a API de Gestão de Produtos com autenticação JWT",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Autenticação",
+      "item": [
+        {
+          "name": "Registrar Novo Usuário",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"username\": \"seu_usuario\", \"email\": \"seu_email@example.com\", \"password\": \"sua_senha\"}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/auth/register",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": ["if (pm.response.code === 201) {", "    var jsonData = pm.response.json();", "    pm.environment.set(\"token\", jsonData.access_token);", "}"]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"username\": \"seu_usuario\", \"password\": \"sua_senha\"}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/auth/login",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["auth", "login"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Departamentos",
+      "item": [
+        {
+          "name": "Listar Todos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/departamento",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["departamento"]
+            }
+          }
+        },
+        {
+          "name": "Obter por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/departamento/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["departamento", "1"]
+            }
+          }
+        },
+        {
+          "name": "Criar",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"descricao\": \"Eletrônicos\"}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/departamento",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["departamento"]
+            }
+          }
+        },
+        {
+          "name": "Atualizar",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"descricao\": \"Eletrônicos Atualizados\"}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/departamento/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["departamento", "1"]
+            }
+          }
+        },
+        {
+          "name": "Deletar",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/departamento/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["departamento", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Marcas",
+      "item": [
+        {
+          "name": "Listar Todos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/marca",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["marca"]
+            }
+          }
+        },
+        {
+          "name": "Criar",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"descricao\": \"Samsung\"}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/marca",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["marca"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Unidades de Medida",
+      "item": [
+        {
+          "name": "Listar Todos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/unidade-medida",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["unidade-medida"]
+            }
+          }
+        },
+        {
+          "name": "Criar",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"descricao\": \"kg\"}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/unidade-medida",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["unidade-medida"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Categorias",
+      "item": [
+        {
+          "name": "Listar Todos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/categoria",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["categoria"]
+            }
+          }
+        },
+        {
+          "name": "Criar",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"descricao\": \"Smartphones\", \"idDepartamento\": 1}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/categoria",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["categoria"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Subcategorias",
+      "item": [
+        {
+          "name": "Listar Todos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/subcategoria",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["subcategoria"]
+            }
+          }
+        },
+        {
+          "name": "Criar",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"descricao\": \"Android\", \"idCategoria\": 1}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/subcategoria",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["subcategoria"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Produtos",
+      "item": [
+        {
+          "name": "Listar Todos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/produto",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["produto"]
+            }
+          }
+        },
+        {
+          "name": "Criar",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"codigo\": \"PROD001\", \"descricao\": \"Samsung Galaxy S21\", \"idCategoria\": 1, \"idSubCategoria\": 1, \"idMarca\": 1, \"idUnidadeMedida\": 1, \"especificacaoTecnica\": \"6GB RAM, 128GB Storage\", \"status\": \"A\", \"pesoBruto\": 0.25, \"pesoLiquido\": 0.2, \"otdMin\": \"10\", \"codBarra\": \"EAN123456789\"}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/produto",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["produto"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Preços de Venda",
+      "item": [
+        {
+          "name": "Listar Todos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/preco-venda",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["preco-venda"]
+            }
+          }
+        },
+        {
+          "name": "Criar",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"idProduto\": 1, \"precoVenda\": 2500.00, \"dataVigenciaInicial\": \"2024-01-01\"}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/preco-venda",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["preco-venda"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Produtos Similares",
+      "item": [
+        {
+          "name": "Listar Todos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/produto-similar",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["produto-similar"]
+            }
+          }
+        },
+        {
+          "name": "Criar",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"idProduto\": 1, \"idProdutoSimilar2\": 2}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/produto-similar",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["produto-similar"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
