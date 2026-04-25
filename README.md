@@ -59,9 +59,7 @@ A API estará disponível em `http://localhost:3000`
 ## 📚 Documentação
 
 ### Documentos Principais:
-- [API_DOCUMENTACAO.md](API_DOCUMENTACAO.md) - Documentação completa de todos os endpoints
 - [RESUMO_IMPLEMENTACAO.md](RESUMO_IMPLEMENTACAO.md) - Resumo técnico da implementação
-- [postman_collection.json](postman_collection.json) - Coleção para testes no Postman
 
 ## 🔐 Autenticação
 
